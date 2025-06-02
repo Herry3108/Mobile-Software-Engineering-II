@@ -46,7 +46,8 @@ Presentation (.NET MAUI)  ⇆  Business (Services)  ⇆  Data Access (Firebase)
 
 ### Entity‑Relationship‑Diagramm
 
-![ERD\_Board-Gamer-App](https://github.com/user-attachments/assets/dce00e48-2c77-4414-999c-ccad99128811)
+![ERD\_Board-Gamer-App](https://github.com/user-attachments/assets/2e221f71-8388-4881-b58c-8d4baa03d590)
+
 
 *Wesentliche Entitäten*
 
