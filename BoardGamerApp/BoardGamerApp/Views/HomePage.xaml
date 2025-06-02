@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BoardGamerApp.Views.HomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:BoardGamerApp.ViewModels"
+    Title="{Binding Title}">
+
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="16" Spacing="16">
+                <Frame Padding="16">
+                    <VerticalStackLayout Spacing="8">
+                        <HorizontalStackLayout Spacing="8">
+                            <Image
+                                HeightRequest="24"
+                                Source="event.png"
+                                WidthRequest="24" />
+                            <Label Text="Nächster Spieleabend" />
+                        </HorizontalStackLayout>
+
+                        <BoxView
+                            Margin="0,8"
+                            BackgroundColor="{StaticResource Gray200}"
+                            HeightRequest="1" />
+
+                        <VerticalStackLayout Spacing="8">
+                            <HorizontalStackLayout Spacing="8">
+                                <Image
+                                    HeightRequest="20"
+                                    Source="calendar.png"
+                                    WidthRequest="20" />
+                                <Label Text="{Binding NextGameNight.DateTime, StringFormat='{}{0:dddd, d. MMMM yyyy, HH:mm} Uhr'}" />
+                            </HorizontalStackLayout>
+
+                            <HorizontalStackLayout Spacing="8">
+                                <Image
+                                    HeightRequest="20"
+                                    Source="person.png"
+                                    WidthRequest="20" />
+                                <Label Text="{Binding NextGameNight.User.Username, StringFormat='Gastgeber: {0}'}" />
+                            </HorizontalStackLayout>
+
+                            <HorizontalStackLayout Spacing="8" VerticalOptions="Start">
+                                <Image
+                                    HeightRequest="20"
+                                    Source="location.png"
+                                    VerticalOptions="Start"
+                                    WidthRequest="20" />
+                                <Label
+                                    LineBreakMode="WordWrap"
+                                    MaxLines="3"
+                                    Text="{Binding NextGameNight.Location}" />
+                            </HorizontalStackLayout>
+
+                            <HorizontalStackLayout Spacing="8" VerticalOptions="Start">
+                                <Image
+                                    HeightRequest="20"
+                                    Source="person.png"
+                                    WidthRequest="20" />
+                                <Label
+                                    LineBreakMode="WordWrap"
+                                    MaxLines="3"
+                                    Text="{Binding NextGameNight.Game.Name, StringFormat='Ausgewähltes Spiel: {0}'}" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+
+                        <Label 
+                            Text="Kein kommender Spieleabend geplant. Erstelle einen neuen!" 
+                            TextColor="{StaticResource Gray500}"
+                            FontSize="14" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame Padding="16" IsVisible="{Binding IsAddingGameSession}">
+                    <VerticalStackLayout Spacing="12">
+                        <HorizontalStackLayout Spacing="8">
+                            <Image
+                                HeightRequest="24"
+                                Source="event_add.png"
+                                WidthRequest="24" />
+                            <Label 
+                                FontSize="18" 
+                                FontAttributes="Bold"
+                                Text="Neuen Spieleabend erstellen" />
+                        </HorizontalStackLayout>
+
+                        <BoxView
+                            Margin="0,8"
+                            BackgroundColor="{StaticResource Gray200}"
+                            HeightRequest="1" />
+
+                        <VerticalStackLayout Spacing="8">
+                            <HorizontalStackLayout Spacing="8">
+                                <Image
+                                    HeightRequest="20"
+                                    Source="calendar.png"
+                                    WidthRequest="20" />
+                                <Label Text="Datum und Uhrzeit" />
+                            </HorizontalStackLayout>
+
+                            <DatePicker 
+                                Date="{Binding NewSessionDateTime, Mode=TwoWay}" />
+
+                            <TimePicker 
+                                Time="{Binding NewSessionTime, Mode=TwoWay}" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Spacing="8">
+                            <HorizontalStackLayout Spacing="8">
+                                <Image
+                                    HeightRequest="20"
+                                    Source="location.png"
+                                    WidthRequest="20" />
+                                <Label Text="Ort" />
+                            </HorizontalStackLayout>
+
+                            <Entry 
+                                Placeholder="Wo findet der Spieleabend statt?"
+                                Text="{Binding NewSessionLocation, Mode=TwoWay}" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Spacing="8">
+                            <HorizontalStackLayout Spacing="8">
+                                <Image
+                                    HeightRequest="20"
+                                    Source="notes.png"
+                                    WidthRequest="20" />
+                                <Label Text="Notizen (optional)" />
+                            </HorizontalStackLayout>
+
+                            <Editor 
+                                Placeholder="Zusätzliche Informationen..."
+                                Text="{Binding NewSessionNotes, Mode=TwoWay}"
+                                HeightRequest="80" />
+                        </VerticalStackLayout>
+
+                        <HorizontalStackLayout Spacing="12" HorizontalOptions="End">
+                            <Button 
+                                Text="Abbrechen"
+                                BackgroundColor="Transparent"
+                                TextColor="{StaticResource Gray600}"
+                                Command="{Binding CancelAddGameSessionCommand}" />
+
+                            <Button 
+                                Text="Erstellen"
+                                Command="{Binding AddGameSessionCommand}"
+                                BackgroundColor="{StaticResource Primary}"
+                                TextColor="White" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <HorizontalStackLayout Spacing="8">
+                    <Label Text="Kommende Spieleabende" FontAttributes="Bold" />
+                </HorizontalStackLayout>
+
+                <CollectionView 
+                    ItemsSource="{Binding UpcomingGameNights}"
+                    EmptyView="Keine kommenden Spieleabende geplant.&#10;Erstelle einen neuen Spieleabend!">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Margin="0,0,0,8" Padding="12">
+                                <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto">
+                                    <Frame
+                                        Grid.RowSpan="2"
+                                        Margin="0,0,12,0"
+                                        Padding="0"
+                                        BackgroundColor="{StaticResource Primary}"
+                                        CornerRadius="20"
+                                        HeightRequest="40"
+                                        WidthRequest="40">
+                                        <Label
+                                            Text="{Binding DateTime, StringFormat='{0:dd}'}"
+                                            FontAttributes="Bold"
+                                            HorizontalOptions="Center"
+                                            TextColor="Black"
+                                            VerticalOptions="Center" />
+                                    </Frame>
+
+                                    <Label Grid.Column="1" Text="{Binding DateTime, StringFormat='{}{0:dddd, d. MMMM yyyy, HH:mm} Uhr'}" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        FontSize="12"
+                                        Text="{Binding User.Username, StringFormat='Bei {0}'}"
+                                        TextColor="{StaticResource Gray500}" />
+
+                                    <Image
+                                        Grid.RowSpan="2"
+                                        Grid.Column="2"
+                                        HeightRequest="24"
+                                        Source="chevron_right.png"
+                                        VerticalOptions="Center"
+                                        WidthRequest="24" />
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Button
+            Grid.Row="1"
+            Margin="16"
+            Command="{Binding ShowAddGameSessionCommand}"
+            CornerRadius="28"
+            FontSize="24"
+            HeightRequest="56"
+            HorizontalOptions="End"
+            Text="+"
+            VerticalOptions="End"
+            WidthRequest="56"
+            BackgroundColor="{StaticResource Primary}"
+            TextColor="White" />
+    </Grid>
+</ContentPage>

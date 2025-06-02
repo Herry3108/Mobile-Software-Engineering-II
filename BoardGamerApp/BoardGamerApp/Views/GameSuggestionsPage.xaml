@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BoardGamerApp.Views.GameSuggestionsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:BoardGamerApp.ViewModels"
+    Title="{Binding Title}">
+    <Grid RowDefinitions="Auto,*">
+        <Label
+            HorizontalOptions="Center"
+            Text="Spielvorschläge für den nächsten Spieleabend" />
+        <Label Text="{Binding NextGameNight.Game.DateTime, StringFormat='Spielvorschläge für den nächsten Spieleabend{}{0:dddd, d. MMMM yyyy, HH:mm} Uhr'}" />
+
+        <CollectionView
+            Grid.Row="1"
+            EmptyView="Noch keine Spielvorschläge vorhanden.&#10;Schlage ein Spiel vor!"
+            ItemsSource="{Binding Suggestions}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="16,8" Padding="16">
+                        <VerticalStackLayout Spacing="8">
+                            <HorizontalStackLayout Spacing="8">
+                                <Image
+                                    HeightRequest="24"
+                                    Source="casino.png"
+                                    WidthRequest="24" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    Text="{Binding Game.Name}" />
+                            </HorizontalStackLayout>
+
+                            <Label
+                                FontSize="14"
+                                Text="{Binding PlayerId, StringFormat='Vorgeschlagen von: {0}'}"
+                                TextColor="{StaticResource Gray500}" />
+
+                            <HorizontalStackLayout Margin="0,16,0,0" Spacing="8">
+                                <HorizontalStackLayout Spacing="4">
+                                    <Image
+                                        HeightRequest="16"
+                                        Source="thumb_up.png"
+                                        WidthRequest="16" />
+                                    <Label Text="{Binding Votes.Count, StringFormat='{0} Stimmen'}" />
+                                </HorizontalStackLayout>
+
+                                <Button
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:GameSuggestionsViewModel}}, Path=VoteCommand}"
+                                    CommandParameter="{Binding .}"
+                                    HorizontalOptions="End"
+                                    Text="Abstimmen" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>  
+        </CollectionView>
+
+        <Button
+            Grid.Row="1"
+            Margin="0,0,16,16"
+            Clicked="OnAddSuggestionClicked"
+            CornerRadius="28"
+            FontSize="24"
+            HeightRequest="56"
+            HorizontalOptions="End"
+            Text="+"
+            VerticalOptions="End"
+            WidthRequest="56" />
+    </Grid>
+</ContentPage>

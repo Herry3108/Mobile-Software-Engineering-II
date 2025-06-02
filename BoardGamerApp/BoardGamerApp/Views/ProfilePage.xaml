@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BoardGamerApp.Views.ProfilePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:BoardGamerApp.ViewModels"
+    Title="{Binding Title}">
+
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="16"
+            HorizontalOptions="Center"
+            Spacing="16">
+            <Frame
+                Margin="0,16,0,0"
+                Padding="0"
+                BackgroundColor="{StaticResource Primary}"
+                CornerRadius="60"
+                HeightRequest="120"
+                HorizontalOptions="Center"
+                WidthRequest="120">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="48"
+                    HorizontalOptions="Center"
+                    Text="{Binding PlayerInitials}"
+                    TextColor="Black"
+                    VerticalOptions="Center" />
+            </Frame>
+
+            <Label
+                FontAttributes="Bold"
+                FontSize="24"
+                HorizontalOptions="Center"
+                Text="{Binding CurrentPlayer.Name}" />
+
+            <Label
+                HorizontalOptions="Center"
+                Text="{Binding CurrentPlayer.Email}"
+                TextColor="{StaticResource Gray500}" />
+
+            <Frame
+                Margin="0,16,0,0"
+                Padding="16"
+                WidthRequest="350">
+                <VerticalStackLayout Spacing="8">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        Text="Persönliche Informationen" />
+                    <BoxView BackgroundColor="{StaticResource Gray200}" HeightRequest="1" />
+
+                    <Grid
+                        Margin="0,8,0,0"
+                        ColumnDefinitions="Auto,*"
+                        RowDefinitions="Auto,Auto"
+                        RowSpacing="16">
+                        <Image
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            HeightRequest="20"
+                            Source="location.png"
+                            WidthRequest="20" />
+                        <VerticalStackLayout
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Margin="12,0,0,0">
+                            <Label
+                                FontSize="14"
+                                Text="Adresse"
+                                TextColor="{StaticResource Gray500}" />
+                            <Label Text="{Binding CurrentPlayer.Address}" />
+                        </VerticalStackLayout>
+
+                        <Image
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            HeightRequest="20"
+                            Source="phone.png"
+                            WidthRequest="20" />
+                        <VerticalStackLayout
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="12,0,0,0">
+                            <Label
+                                FontSize="14"
+                                Text="Telefon"
+                                TextColor="{StaticResource Gray500}" />
+                            <Label Text="+49 123 456789" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Padding="16" WidthRequest="350">
+                <VerticalStackLayout Spacing="8">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        Text="Spielevorlieben" />
+                    <BoxView BackgroundColor="{StaticResource Gray200}" HeightRequest="1" />
+
+                    <Grid BackgroundColor="{StaticResource Gray200}" />
+
+                    <Grid
+                        Margin="0,8,0,0"
+                        ColumnDefinitions="Auto,*"
+                        RowDefinitions="Auto,Auto"
+                        RowSpacing="16">
+                        <Image
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            HeightRequest="20"
+                            Source="favorite.png"
+                            WidthRequest="20" />
+                        <VerticalStackLayout
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Margin="12,0,0,0">
+                            <Label
+                                FontSize="14"
+                                Text="Lieblingsspiele"
+                                TextColor="{StaticResource Gray500}" />
+                            <Label Text="Catan, Codenames, Ticket to Ride" />
+                        </VerticalStackLayout>
+
+                        <Image
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            HeightRequest="20"
+                            Source="time.png"
+                            WidthRequest="20" />
+                        <VerticalStackLayout
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="12,0,0,0">
+                            <Label
+                                FontSize="14"
+                                Text="Bevorzugte Spielzeit"
+                                TextColor="{StaticResource Gray500}" />
+                            <Label Text="2-3 Stunden" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Button
+                Margin="0,16,0,32"
+                HorizontalOptions="Center"
+                ImageSource="edit.png"
+                Text="Profil bearbeiten" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

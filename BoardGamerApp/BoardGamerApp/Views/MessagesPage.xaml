@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BoardGamerApp.Views.MessagesPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:BoardGamerApp.ViewModels"
+    Title="{Binding Title}">
+
+    <Grid RowDefinitions="*,Auto">
+        <CollectionView
+            x:Name="messagesCollection"
+            EmptyView="Noch keine Nachrichten vorhanden."
+            ItemsSource="{Binding Messages}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="16,8">
+                        <Frame
+                            Padding="16,10"
+                            BackgroundColor="{StaticResource Primary}"
+                            HorizontalOptions="End"
+                            MaximumWidthRequest="300">
+                            <VerticalStackLayout Spacing="4">
+                                <Label FontAttributes="Bold" Text="{Binding SenderName}" TextColor="{StaticResource Gray100}" />
+                                <Label Text="{Binding Content}" TextColor="{StaticResource Gray100}" />
+                                <Label
+                                    FontSize="12"
+                                    HorizontalOptions="End"
+                                    Text="{Binding Timestamp, StringFormat='{0:HH:mm}'}"
+                                    TextColor="{StaticResource Gray100}" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Grid
+            Grid.Row="1"
+            Padding="16"
+            BackgroundColor="White"
+            ColumnDefinitions="*,Auto">
+            <Frame
+                Grid.Column="0"
+                Padding="12,0"
+                BorderColor="{StaticResource Gray300}">
+                <Entry Placeholder="Nachricht an alle..." Text="{Binding NewMessage}" />
+            </Frame>
+            <Button
+                Grid.Column="1"
+                Margin="8,0,0,0"
+                Command="{Binding SendMessageCommand}"
+                Text="Senden" />
+        </Grid>
+    </Grid>
+</ContentPage>

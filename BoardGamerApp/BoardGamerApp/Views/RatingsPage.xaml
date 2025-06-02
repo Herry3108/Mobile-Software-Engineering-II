@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BoardGamerApp.Views.RatingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:BoardGamerApp.ViewModels"
+    Title="{Binding Title}">
+
+    <Grid RowDefinitions="Auto,*">
+        <Label
+            HorizontalOptions="Center"
+            Text="Bewertungen vergangener Spieleabende" />
+
+        <CollectionView
+            Grid.Row="1"
+            EmptyView="Noch keine Bewertungen vorhanden."
+            ItemsSource="{Binding Ratings}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="16,8" Padding="16">
+                        <VerticalStackLayout Spacing="8">
+                            <HorizontalStackLayout Spacing="8">
+                                <Frame
+                                    Padding="0"
+                                    BackgroundColor="{StaticResource Primary}"
+                                    CornerRadius="20"
+                                    HeightRequest="40"
+                                    WidthRequest="40">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="Center"
+                                        Text="{Binding RaterInitials}"
+                                        TextColor="Black"
+                                        VerticalOptions="Center" />
+                                </Frame>
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    Text="{Binding RaterName}"
+                                    VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+
+                            <BoxView
+                                Margin="0,8"
+                                BackgroundColor="{StaticResource Gray200}"
+                                HeightRequest="1" />
+
+                            <HorizontalStackLayout Spacing="8">
+                                <Label Text="Gastgeber:" />
+                                <Label Text="{Binding HostRating, StringFormat='{0} Sterne'}" />
+                            </HorizontalStackLayout>
+
+                            <HorizontalStackLayout Spacing="8">
+                                <Label Text="Essen:" />
+                                <Label Text="{Binding FoodRating, StringFormat='{0} Sterne'}" />
+                            </HorizontalStackLayout>
+
+                            <HorizontalStackLayout Spacing="8">
+                                <Label Text="Gesamt:" />
+                                <Label Text="{Binding OverallRating, StringFormat='{0} Sterne'}" />
+                            </HorizontalStackLayout>
+
+                            <VerticalStackLayout IsVisible="{Binding HasComment}" Spacing="4">
+                                <Label FontAttributes="Bold" Text="Kommentar:" />
+                                <Label Text="{Binding Comment}" />
+                            </VerticalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button
+            Grid.Row="1"
+            Margin="0,0,16,16"
+            Clicked="OnAddRatingClicked"
+            CornerRadius="28"
+            FontSize="24"
+            HeightRequest="56"
+            HorizontalOptions="End"
+            Text="+"
+            VerticalOptions="End"
+            WidthRequest="56" />
+    </Grid>
+</ContentPage>

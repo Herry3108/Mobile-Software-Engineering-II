@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="BoardGamerApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:BoardGamerApp.Views"
+    Shell.FlyoutBehavior="Disabled"
+    Title="BoardGamerApp">
+
+    <TabBar>
+        <Tab Title="Home" Icon="home.png">
+            <ShellContent
+                ContentTemplate="{DataTemplate views:HomePage}" />
+        </Tab>
+        <Tab Title="Spiele" Icon="casino.png">
+            <ShellContent
+                ContentTemplate="{DataTemplate views:GameSuggestionsPage}" />
+        </Tab>
+        <Tab Title="Bewertungen" Icon="star.png">
+            <ShellContent
+                ContentTemplate="{DataTemplate views:RatingsPage}" />
+        </Tab>
+        <Tab Title="Nachrichten" Icon="message.png">
+            <ShellContent
+                ContentTemplate="{DataTemplate views:MessagesPage}" />
+        </Tab>
+        <Tab Title="Profil" Icon="person.png">
+            <ShellContent
+                ContentTemplate="{DataTemplate views:ProfilePage}" />
+        </Tab>
+    </TabBar>
+
+</Shell>

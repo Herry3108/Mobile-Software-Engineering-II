@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BoardGamerApp.Views.AddRatingPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:BoardGamerApp.ViewModels"
+    Title="Spieleabend bewerten">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="16">
+            <Label Text="Gastgeber:" />
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="8">
+                <Button
+                    BackgroundColor="{Binding IsHostRating1}"
+                    Clicked="OnHostRatingClicked"
+                    CommandParameter="1"
+                    HeightRequest="50"
+                    Text="1"
+                    WidthRequest="50" />
+                <Button
+                    BackgroundColor="{Binding IsHostRating2}"
+                    Clicked="OnHostRatingClicked"
+                    CommandParameter="2"
+                    HeightRequest="50"
+                    Text="2"
+                    WidthRequest="50" />
+                <Button
+                    BackgroundColor="{Binding IsHostRating3}"
+                    Clicked="OnHostRatingClicked"
+                    CommandParameter="3"
+                    HeightRequest="50"
+                    Text="3"
+                    WidthRequest="50" />
+                <Button
+                    BackgroundColor="{Binding IsHostRating4}"
+                    Clicked="OnHostRatingClicked"
+                    CommandParameter="4"
+                    HeightRequest="50"
+                    Text="4"
+                    WidthRequest="50" />
+                <Button
+                    BackgroundColor="{Binding IsHostRating5}"
+                    Clicked="OnHostRatingClicked"
+                    CommandParameter="5"
+                    HeightRequest="50"
+                    Text="5"
+                    WidthRequest="50" />
+            </HorizontalStackLayout>
+
+            <Label Margin="0,16,0,0" Text="Essen:" />
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="8">
+                <Button
+                    BackgroundColor="{Binding IsFoodRating1}"
+                    Clicked="OnFoodRatingClicked"
+                    CommandParameter="1"
+                    HeightRequest="50"
+                    Text="1"
+                    WidthRequest="50" />
+                <Button
+                    BackgroundColor="{Binding IsFoodRating2}"
+                    Clicked="OnFoodRatingClicked"
+                    CommandParameter="2"
+                    HeightRequest="50"
+                    Text="2"
+                    WidthRequest="50" />
+                <Button
+                    BackgroundColor="{Binding IsFoodRating3}"
+                    Clicked="OnFoodRatingClicked"
+                    CommandParameter="3"
+                    HeightRequest="50"
+                    Text="3"
+                    WidthRequest="50" />
+                <Button
+                    BackgroundColor="{Binding IsFoodRating4}"
+                    Clicked="OnFoodRatingClicked"
+                    CommandParameter="4"
+                    HeightRequest="50"
+                    Text="4"
+                    WidthRequest="50" />
+                <Button
+                    BackgroundColor="{Binding IsFoodRating5}"
+                    Clicked="OnFoodRatingClicked"
+                    CommandParameter="5"
+                    HeightRequest="50"
+                    Text="5"
+                    WidthRequest="50" />
+            </HorizontalStackLayout>
+
+            <Label Margin="0,16,0,0" Text="Gesamteindruck:" />
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="8">
+                <Button
+                    BackgroundColor="{Binding IsOverallRating1}"
+                    Clicked="OnOverallRatingClicked"
+                    CommandParameter="1"
+                    HeightRequest="50"
+                    Text="1"
+                    WidthRequest="50" />
+                <Button
+                    BackgroundColor="{Binding IsOverallRating2}"
+                    Clicked="OnOverallRatingClicked"
+                    CommandParameter="2"
+                    HeightRequest="50"
+                    Text="2"
+                    WidthRequest="50" />
+                <Button
+                    BackgroundColor="{Binding IsOverallRating3}"
+                    Clicked="OnOverallRatingClicked"
+                    CommandParameter="3"
+                    HeightRequest="50"
+                    Text="3"
+                    WidthRequest="50" />
+                <Button
+                    BackgroundColor="{Binding IsOverallRating4}"
+                    Clicked="OnOverallRatingClicked"
+                    CommandParameter="4"
+                    HeightRequest="50"
+                    Text="4"
+                    WidthRequest="50" />
+                <Button
+                    BackgroundColor="{Binding IsOverallRating5}"
+                    Clicked="OnOverallRatingClicked"
+                    CommandParameter="5"
+                    HeightRequest="50"
+                    Text="5"
+                    WidthRequest="50" />
+            </HorizontalStackLayout>
+
+            <Label Margin="0,16,0,0" Text="Kommentar (optional):" />
+            <Editor
+                HeightRequest="100"
+                Placeholder="Wie war der Spieleabend?"
+                Text="{Binding Comment}" />
+
+            <HorizontalStackLayout
+                Margin="0,16,0,0"
+                HorizontalOptions="End"
+                Spacing="8">
+                <Button Clicked="OnCancelClicked" Text="Abbrechen" />
+                <Button Clicked="OnSubmitClicked" Text="Bewerten" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
