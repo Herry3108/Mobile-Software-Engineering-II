@@ -50,7 +50,7 @@ Presentation (.NET MAUI)  ⇆  Business (Services)  ⇆  Data Access (Firebase)
 
 *Wesentliche Entitäten*
 
-@@ -58,29 +64,27 @@ Client (.NET MAUI)  ⇆  ASP.NET Core API  ⇆  Firebase (NoSQL)
+Client (.NET MAUI)  ⇆  ASP.NET Core API  ⇆  Firebase (NoSQL)
 
 ---
 
