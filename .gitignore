@@ -53,4 +53,5 @@ CodeCoverage/
 TestResult.xml
 nunit-*.xml
 
-.vs
+.vsgoogle-services.json
+GoogleService-Info.plist
